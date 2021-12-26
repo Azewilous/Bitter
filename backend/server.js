@@ -3,6 +3,9 @@ import bodyParser from 'body-parser'
 import cors from 'cors'
 import dataHandler from './models/model.js'
 import accountRoutes from './routes/account.routes.js'
+import dotenv  from 'dotenv'
+
+dotenv.config()
 
 const PORT = process.env.PORT || 4000
 const app = express()

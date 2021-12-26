@@ -4,16 +4,20 @@
   "description": "backend server for bitter app",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon -r dotenv/config server.js"
   },
   "author": "Azewilous",
   "license": "MIT",
   "type": "module",
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "body-parser": "^1.19.1",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.2",
+    "helmet": "^4.6.0",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.1.3"
   }
 }

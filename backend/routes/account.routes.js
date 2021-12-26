@@ -12,5 +12,7 @@ export default app => {
 
     router.delete('/:id', Account.deleteAccount)
 
+    router.post('/login', Account.login)
+
     app.use('/api/account/', router)
 }

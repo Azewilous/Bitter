@@ -4,6 +4,8 @@ import cors from 'cors'
 import dataHandler from './models/model.js'
 import accountRoutes from './routes/account.routes.js'
 import dotenv  from 'dotenv'
+import helmet from 'helmet'
+import routeAuth from './auth/auth.js'
 
 dotenv.config()
 
@@ -14,16 +16,20 @@ const corsOptions = {
     origin: 'http://localhost:4000'
 }
 
+app.use(helmet())
+
 app.use(cors(corsOptions))
 
 app.use(bodyParser.json())
 
 app.use(bodyParser.urlencoded({ extended: true }))
 
+app.use(routeAuth)
+
 accountRoutes(app)
 
-app.get('/', (req, res) => {
-    res.json({ message: 'test' })
+app.get('/api', (req, res) => {
+    res.json({ message: 'ok' })
 })
 
 dataHandler.mongoose

@@ -1,16 +1,59 @@
 import dataHanlder from '../models/model.js'
-const Account = dataHanlder.account;
+import bcrypt from 'bcrypt'
+import dotenv  from 'dotenv'
+import jwt from 'jsonwebtoken'
 
-const createAccount = (req, res) => {
+dotenv.config()
+
+const Account = dataHanlder.account;
+const HashSalt = Number(process.env.HASH_SALT)
+
+const login = (req, res) => {
+    if (!req.body.email || !req.body.password) {
+        res.status(400).send({ message: 'Fields cannot be left empty' })
+        return
+    }
+    checkAccountLogin(req.body.email, req.body.password).then(data => {
+        if (data) {
+            const token = jwt.sign(
+                { 
+                    id: data.id, email: data.email 
+                },
+                    process.env.SECRET_TOKEN,
+                { 
+                    expiresIn: "1h"
+                }
+            )
+            data.token = token
+            res.send({ message: 'User successfully logged in', data })
+        } else {
+            res.status(400).send({ message: 'Could not log user in' })
+        }
+    }).catch(err => {
+        res.status(500).send({ message: 'Error trying to log user in' })
+        console.log(err)
+    })
+}
+
+const createAccount = async (req, res) => {
     if (!req.body.first_name || !req.body.last_name || !req.body.email || !req.body.password) {
         res.status(400).send({ message: 'Fields cannot be left empty' })
         return
     }
+
+    const findAccount = await getAccount(req.body.email)
+    if (findAccount) {
+        res.status(400).send({ message: 'Account with this email already exists' })
+        return
+    }
+
+    const hashedPassword = await hashPassword(req.body.password)
+
     const account = new Account({
         first_name: req.body.first_name,
         last_name: req.body.last_name,
-        email: req.body.email,
-        password: req.body.password
+        email: req.body.email.toLowerCase(),
+        password: hashedPassword
     })
 
     account.save(account)
@@ -61,6 +104,7 @@ const updateAccount = (req, res) => {
             res.status(500).send({
                 message: `Error updating the account with the id ${id}`
             })
+            console.log(ere)
         })
 }
 
@@ -77,9 +121,34 @@ const deleteAccount = (req, res) => {
         })
 }
 
+const hashPassword = async (password) => {
+    const salt = await bcrypt.genSalt(HashSalt)
+    const hash = await bcrypt.hash(password, salt)
+    return hash
+}
+
+const checkAccountLogin = async (email, password) => {
+    try {
+        const account = await getAccount(email)
+        if (account) {
+            const compare = await bcrypt.compare(password, account.password)
+            return compare ? account : undefined
+        } else {
+            return undefined
+        }
+    } catch (err) {
+        throw err
+    }
+}
+
+const getAccount = async (email) => {
+    return await Account.findOne({ email: email.toLowerCase() }).exec()
+}
+
 export default {
     findAccount,
     createAccount,
     updateAccount,
-    deleteAccount
+    deleteAccount,
+    login
 }

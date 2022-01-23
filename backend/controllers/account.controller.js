@@ -36,7 +36,7 @@ const login = (req, res) => {
 }
 
 const createAccount = async (req, res) => {
-    if (!req.body.first_name || !req.body.last_name || !req.body.email || !req.body.password) {
+    if (!req.body.fullname || !req.body.email || !req.body.password) {
         res.status(400).send({ message: 'Fields cannot be left empty' })
         return
     }
@@ -50,8 +50,7 @@ const createAccount = async (req, res) => {
     const hashedPassword = await hashPassword(req.body.password)
 
     const account = new Account({
-        first_name: req.body.first_name,
-        last_name: req.body.last_name,
+        fullname: req.body.fullname,
         email: req.body.email.toLowerCase(),
         password: hashedPassword
     })

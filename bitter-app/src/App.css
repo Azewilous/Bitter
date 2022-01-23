@@ -2,6 +2,10 @@ html, body, #root, .App {
   background-color: black;
 }
 
+.background {
+  height: 90vh;
+}
+
 .container {
   height: 100%;
 }
@@ -14,14 +18,96 @@ html, body, #root, .App {
   padding: 15rem 0 15rem 2rem;
 }
 
+h1 {
+  font-size: 3em;
+}
+
+h4 {
+  font-size: 2.4em;
+}
+
 h1, h4, h6 {
   color: white;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .sign-in {
   color: aqua;
+  font-size: 1em;
 }
 
 .sign-up {
   color: white;
+  font-size: 1em;
+}
+
+.modal-header {
+  border-bottom: none;
+}
+
+.btn-close {
+  background: transparent url("data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 16 16%27 fill=%27%23fff%27%3e%3cpath d=%27M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z%27/%3e%3c/svg%3e") center/1em auto no-repeat;
+}
+
+.modal-content {
+  background-color: black;
+}
+
+.modal-title, .modal-body {
+  color: white;
+}
+
+.modal-body .form-control {
+  background-color: black;
+  color: white;
+  border-color: slategray;
+  font-size: 1em;
+}
+
+.modal-body .form-control:focus {
+  border-color: aqua;
+  outline: none;
+  box-shadow: none;
+}
+
+.form-select {
+  border-color: slategray;
+  background-color: black;
+}
+
+.form-select {
+  color: white;
+}
+
+.form-select option {
+  color: white;
+}
+
+.form-select:focus {
+  border-color: aqua;
+  outline: none;
+  box-shadow: none;
+}
+
+.modal-body .btn {
+  color: black;
+  background-color: slategray;
+  border-color: transparent;
+}
+
+.modal-body .btn:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.name-len {
+  color: slategray;
+}
+
+.invalid {
+  color: red;
+}
+
+.invalid-control {
+  border-color: red !important;
 }

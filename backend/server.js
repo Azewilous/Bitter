@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 4000
 const app = express()
 
 const corsOptions = {
-    origin: 'http://localhost:4000'
+    origin: [ 'http://localhost:4000', 'http://localhost:3000']
 }
 
 app.use(helmet())

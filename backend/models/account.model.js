@@ -1,8 +1,7 @@
 export default mongoose => {
     const schema = mongoose.Schema(
         {
-            first_name: String,
-            last_name: String,
+            fullname: String,
             email: String,
             password: String,
             token: String

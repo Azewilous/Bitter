@@ -12,10 +12,18 @@ class AuthService {
     })
   }
 
+  logout() {
+    localStorage.removeItem('account')
+  }
+
   register(fullname, email, password) {
     return axios.post(`${API_URL}account`, {
       fullname, email, password
     })
+  }
+
+  getAccount() {
+    return JSON.parse(localStorage.getItem('account'))
   }
 
 }

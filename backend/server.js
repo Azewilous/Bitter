@@ -3,6 +3,7 @@ import bodyParser from 'body-parser'
 import cors from 'cors'
 import dataHandler from './models/model.js'
 import accountRoutes from './routes/account.routes.js'
+import narrativeRoutes from './routes/narrative.routes.js'
 import dotenv  from 'dotenv'
 import helmet from 'helmet'
 import routeAuth from './auth/auth.js'
@@ -27,6 +28,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(routeAuth)
 
 accountRoutes(app)
+narrativeRoutes(app)
 
 app.get('/api', (req, res) => {
     res.json({ message: 'ok' })

@@ -8,7 +8,7 @@ export const authorizeToken = (req, res, next) => {
 
   jwt.verify(token, process.env.SECRET_TOKEN, (err, decoded) => {
     if (err) {
-      return res.status(401).send({ message: 'Unauthorized' })
+      return res.status(401).send({ message: 'Unauthorized token provided.' })
     }
     req.id = decoded.id
     next()

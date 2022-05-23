@@ -1,7 +1,6 @@
-import { Component } from "react"
+import { Component } from 'react'
 import { Modal, Container, Row, Col } from 'react-bootstrap'
-import { Navigate, useNavigate } from "react-router-dom"
-import AuthService from "../../services/auth.service"
+import AuthService from '../../services/auth.service'
 import Alerts from '../alerts/alert.component'
 
 class Login extends Component {
@@ -63,7 +62,6 @@ class Login extends Component {
     AuthService.loign(
       this.state.email, this.state.password
     ).then(response => {
-      console.log(response)
       if (response.data.account.token) {
         localStorage.setItem('account', JSON.stringify(response.data.account))
         this.setState({ showAlert: true, variant: 'success', message: 'Login Successful' })
@@ -71,7 +69,7 @@ class Login extends Component {
           this.setState({ isLoggedIn: true })
           window.history.pushState({}, undefined, '/home')
           window.location.reload()
-        }, 2000)
+        }, 1500)
       }
     }).catch(({ response }) => {
       console.log(response)

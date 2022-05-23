@@ -19,8 +19,19 @@
 }
 
 .narratives {
-  border: .1em solid grey;
-  border-width: 0 .1em .1em .1em;
+  /*border: .1em solid grey;
+  border-width: 0 .1em 0 .1em;*/
+  padding: .53vw;
+}
+
+.narratives-header {
+  border: .1em solid dimgrey;
+  border-width: .1em .1em 0 .1em;
+}
+
+.narratives-narrate {
+  border: .1em solid dimgrey;
+  border-width: 0 .1em 0 .1em;
 }
 
 .narratives p {
@@ -53,4 +64,8 @@ hr {
 
 .new-narrative.btn:focus {
   box-shadow: none !important;
+}
+
+.profile-picture-small {
+  width: 2vw;
 }

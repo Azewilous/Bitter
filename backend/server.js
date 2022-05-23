@@ -14,7 +14,8 @@ const PORT = process.env.PORT || 4000
 const app = express()
 
 const corsOptions = {
-    origin: [ 'http://localhost:4000', 'http://localhost:3000']
+    origin: '*',
+    methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH']
 }
 
 app.use(helmet())
@@ -24,6 +25,8 @@ app.use(cors(corsOptions))
 app.use(bodyParser.json())
 
 app.use(bodyParser.urlencoded({ extended: true }))
+
+app.set('base', 'api')
 
 app.use(routeAuth)
 

@@ -55,7 +55,7 @@ const createAccount = async (req, res) => {
     password: hashedPassword
   })
 
-  Account.save(account)
+  account.save()
     .then(data => {
       res.send(data)
     }).catch(err => {

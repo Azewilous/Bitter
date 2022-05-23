@@ -1,0 +1,9 @@
+.narrative-container {
+  border: 1px solid dimgrey;
+  border-width: 1px 1px 1px 1px;
+  height: auto;
+}
+
+.narrative-dot {
+  font-size: 1rem;
+}

@@ -17,13 +17,17 @@ class AuthService {
   }
 
   register(fullname, email, password) {
-    return axios.post(`${API_URL}account`, {
+    return axios.post(`${API_URL}account/create`, {
       fullname, email, password
     })
   }
 
   getAccount() {
     return JSON.parse(localStorage.getItem('account'))
+  }
+ 
+  isLoggedIn() {
+    return this.getAccount() !== null
   }
 
 }

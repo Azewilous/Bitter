@@ -43,24 +43,6 @@ const allNarratives = async (req, res) => {
   } catch (err) {
     res.status(500).send({ message: `Error retrieving narratives. ${err}` })
   }
-  
-
-
-  // Narrative.find({}).then(async data => {
-  //   if (!data) {
-  //     res.status(404).send({ message: 'No narratives found.' })
-  //   } else {
-  //     let narratives = []
-  //     let narrativeUsers = data.map(x => x.user)
-  //     let accountsList = await Account.find({'_id': { '$in': narrativeUsers }})
-  //     data.forEach(x => narratives.push( {createdAt: x.createdAt, user: x.user, message: x.message, fullname: accountsList.find(acc => acc._id = x.user).fullname, id: x.id, updatedAt: x.updatedAt }))
-  //     narratives = data.map(x => ({...x, fullname: accountsList.find(acc => acc.id = x.user).fullname}))
-  //     data.forEach(x => { narratives.push({ ...x, fullname: accounts.find(acc => acc.id = x.user)})})
-  //     res.send(narratives)
-  //   }
-  // }).catch(err => {
-  //   res.status(500).send({ message: `Error retrieving narratives. ${err}` })
-  // })
 }
 
 export default {

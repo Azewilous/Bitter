@@ -2,11 +2,9 @@ import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import background from './assets/490500.jpg'
 import React, { Component } from 'react'
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import Register from './components/register/register.component'
 import Login from './components/login/login.component'
 import AuthService from './services/auth.service'
-import Home from './components/home/home.component'
 
 class App extends Component {
 

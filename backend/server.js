@@ -1,4 +1,5 @@
 import express from 'express'
+import http from 'http'
 import bodyParser from 'body-parser'
 import cors from 'cors'
 import dataHandler from './models/model.js'
@@ -7,6 +8,7 @@ import narrativeRoutes from './routes/narrative.routes.js'
 import dotenv  from 'dotenv'
 import helmet from 'helmet'
 import routeAuth from './auth/auth.js'
+import { createLiveServer } from './live/live.server.js'
 
 dotenv.config()
 
@@ -44,6 +46,8 @@ dataHandler.mongoose
         console.log('cannot connect to the database', err);
     })
 
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
     console.log(`server is running on port ${PORT}`)
 })
+
+createLiveServer(server)

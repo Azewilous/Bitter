@@ -57,15 +57,17 @@ h1, h4, h6 {
   color: white;
 }
 
-.modal-body .form-control {
+.form-control {
   background-color: black;
   color: white;
   border-color: slategray;
-  font-size: 1em;
+  font-size: .875em !important;
 }
 
-.modal-body .form-control:focus {
+.form-control:focus {
+  background-color: black;
   border-color: aqua;
+  color: white;
   outline: none;
   box-shadow: none;
 }
@@ -89,13 +91,13 @@ h1, h4, h6 {
   box-shadow: none;
 }
 
-.modal-body .btn {
+.btn.login {
   color: black;
   background-color: slategray;
   border-color: transparent;
 }
 
-.modal-body .btn:focus {
+.btn.login:focus {
   outline: none;
   box-shadow: none;
 }

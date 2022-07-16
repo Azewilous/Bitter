@@ -1,5 +1,4 @@
 import express from 'express'
-import http from 'http'
 import bodyParser from 'body-parser'
 import cors from 'cors'
 import dataHandler from './models/model.js'
@@ -9,6 +8,7 @@ import dotenv  from 'dotenv'
 import helmet from 'helmet'
 import routeAuth from './auth/auth.js'
 import { createLiveServer } from './live/live.server.js'
+import { prepareAWSBucket, uploadFile } from './aws/aws.store.js'
 
 dotenv.config()
 
@@ -46,8 +46,12 @@ dataHandler.mongoose
         console.log('cannot connect to the database', err);
     })
 
+prepareAWSBucket()
+
 const server = app.listen(PORT, () => {
     console.log(`server is running on port ${PORT}`)
 })
 
 createLiveServer(server)
+
+uploadFile('./assets/360_F_169738378_8v5hNI7i7zMm6YCWWSZhfwrGpKkTEOLC.jpg')

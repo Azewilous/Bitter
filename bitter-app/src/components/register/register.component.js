@@ -221,7 +221,7 @@ class Register extends Component {
                           </div>
                           <div className='row pt-5'>
                             <div className='col-sm-12'>
-                              <button type='submit' className='btn btn-info btn-lg rounded-pill w-100 p-1 sign-up'>Next</button>
+                              <button type='submit' className='btn btn-info btn-lg rounded-pill w-100 p-1 login'>Next</button>
                             </div>
                           </div>
                         </div>

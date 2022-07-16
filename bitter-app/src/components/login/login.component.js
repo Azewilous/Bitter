@@ -1,7 +1,6 @@
+import './login.component.css'
 import { Component } from 'react'
-import { Modal, Container, Row, Col } from 'react-bootstrap'
 import AuthService from '../../services/auth.service'
-import Alerts from '../alerts/alert.component'
 
 class Login extends Component {
 
@@ -17,7 +16,7 @@ class Login extends Component {
       message: '',
       isLoggedIn: false
     }
-    
+
     this.handleEmailChange = this.handleEmailChange.bind(this)
     this.handlePasswordChange = this.handlePasswordChange.bind(this)
     this.handleSubmission = this.handleSubmission.bind(this)
@@ -73,7 +72,10 @@ class Login extends Component {
       }
     }).catch(({ response }) => {
       console.log(response)
-      this.setState({ showAlert: true, variant: 'danger', message: response.data.account.message })
+      if (response.status === 401) {
+        this.setState({ showAlert: true, variant: 'danger', message: response.data.message })
+        console.log(this.state.showAlert)
+      }
     })
   }
 
@@ -83,47 +85,36 @@ class Login extends Component {
 
   render() {
     return (
-      <>
-				<Container>
-          <Row>
-            <Col sm={12}>
-              <Modal show={this.props.show} onHide={this.props.hide}>
-                <Modal.Header closeButton>
-                  <Modal.Title>Sign in</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                  <Alerts show={this.state.showAlert} variant={this.state.variant} message={this.state.message} close={this.closeAlerts} />
-                  <>
-                  <div className='container-fluid'>
-                      <form className='row g-3' onSubmit={this.handleSubmission}>
-                        <div className='col-md-12'>
-                          <div className='row pb-4'>
-                            <div className='col-sm-12 p-0 input-group input-group-lg'>
-                              <input className={`form-control w-100 ${!this.state.validations['email'] ? '' : 'invalid-control'}`} type="text" placeholder="Email" value={this.state.email} onChange={this.handleEmailChange} />
-                              <span className='invalid'>{this.state.validations['email']}</span>
-                            </div>
-                          </div>
-                          <div className='row pb-4'>
-                            <div className='col-sm-12 p-0 input-group input-group-lg'>
-                              <input className={`form-control w-100 ${!this.state.validations['password'] ? '' : 'invalid-control'}`} type="password" placeholder="Password" value={this.state.password} onChange={this.handlePasswordChange} />
-                              <span className='invalid'>{this.state.validations['password']}</span>
-                            </div>
-                          </div>
-                          <div className='row pt-5'>
-                            <div className='col-sm-12'>
-                              <button type='submit' className='btn btn-info btn-lg rounded-pill w-100 p-1 sign-up'>Next</button>
-                            </div>
-                          </div>
-                        </div>
-                      </form>
-                    </div>
-                  </>
-                </Modal.Body>
-              </Modal>
-            </Col>
-          </Row>
-        </Container>
-      </>
+      <form className='row g-3 container-fluid mt-3' onSubmit={this.handleSubmission}>
+        <div className='col-sm-12'>
+          <div className='row pb-3'>
+            <div className='col-sm-12 p-0 input-group input-group-lg'>
+              <input className={`form-control w-100 ${!this.state.validations['email'] ? '' : 'invalid-control'}`} type="text" placeholder="Email" value={this.state.email} onChange={this.handleEmailChange} />
+              <span className='invalid'>{this.state.validations['email']}</span>
+            </div>
+          </div>
+          <div className='row pb-3'>
+            <div className='col-sm-12 p-0 input-group input-group-lg'>
+              <input className={`form-control w-100 ${!this.state.validations['password'] ? '' : 'invalid-control'}`} type="password" placeholder="Password" value={this.state.password} onChange={this.handlePasswordChange} />
+              <span className='invalid'>{this.state.validations['password']}</span>
+            </div>
+          </div>
+          <div className='row'>
+            <div className='col-sm-12'>
+              {
+                this.state.showAlert && <div class={`alert alert-${this.state.variant} p-1`} role='alert'>
+                  {this.state.message}
+                </div>
+              }
+            </div>
+          </div>
+          <div className='row pt-2'>
+            <div className='col-sm-12 p-0'>
+              <button type='submit' className='btn btn-info btn-lg rounded-pill w-100 p-0 login'>Next</button>
+            </div>
+          </div>
+        </div>
+      </form>
     )
   }
 

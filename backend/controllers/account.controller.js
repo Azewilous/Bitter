@@ -27,7 +27,7 @@ const login = (req, res) => {
       account.token = token
       res.send({ message: 'User successfully logged in', account })
     } else {
-      res.status(400).send({ message: 'Could not log user in' })
+      res.status(401).send({ message: 'Could not log user in' })
     }
   }).catch(err => {
     res.status(500).send({ message: 'Error trying to log user in' })

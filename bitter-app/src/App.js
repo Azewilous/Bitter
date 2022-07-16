@@ -57,7 +57,7 @@ class App extends Component {
             </div>
             <div className='row pt-4'>
               <div className='col-sm-8'>
-                <h4><strong>Join bitter today</strong></h4>
+                <h4><strong>Join Bitter today</strong></h4>
               </div>
               <div className='col-sm-3'></div>
             </div>
